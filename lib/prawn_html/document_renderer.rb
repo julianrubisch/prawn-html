@@ -101,7 +101,7 @@ module PrawnHtml
 
     def apply_tag_close_styles(element)
       tag_styles = element.tag_closing(context: context)
-      pdf.table(element.table_data) if element.is_a?(Tags::Table)
+      pdf.table(element.table_data, cell_style: {borders: [], size: 10, padding: [2, 2, 2, 0]}) if element.is_a?(Tags::Table)
       @last_margin = tag_styles[:margin_bottom].to_f
       pdf.advance_cursor(last_margin + tag_styles[:padding_bottom].to_f)
       pdf.start_new_page if tag_styles[:break_after]
